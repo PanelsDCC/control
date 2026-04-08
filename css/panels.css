@@ -91,6 +91,14 @@
   pointer-events: none;
 }
 
+.panel-placeholder.panel-placeholder-auth {
+  pointer-events: auto;
+}
+
+.panel-placeholder.panel-placeholder-auth .btn {
+  margin-top: 12px;
+}
+
 .panel-controller-layer {
   position: absolute;
   inset: 0;
@@ -390,4 +398,6 @@
     transform: translateY(0);
   }
 }
+
+/* Panel list screen styles live in panels-base.css (loaded by index.html). */
 

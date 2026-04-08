@@ -55,55 +55,7 @@ main {
   background-color: var(--button-hover);
 }
 
-.nav-panel-menu {
-  position: relative;
-}
-
-.nav-panel-dropdown {
-  position: absolute;
-  top: calc(100% + 6px);
-  right: 0;
-  min-width: 220px;
-  background: var(--background);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  box-shadow: 0 12px 24px rgba(0,0,0,0.35);
-  padding: 6px 0;
-  display: none;
-  z-index: 20;
-}
-
-.nav-panel-menu.open .nav-panel-dropdown {
-  display: block;
-}
-
-.nav-panel-dropdown-list {
-  display: flex;
-  flex-direction: column;
-  max-height: 320px;
-  overflow-y: auto;
-}
-
-.nav-panel-item {
-  width: 100%;
-  text-align: left;
-  padding: 16px !important;
-  background: transparent;
-  border: none;
-  color: var(--text-bright);
-  font-size: 0.95rem;
-  cursor: pointer;
-}
-
-.nav-panel-item:hover {
-  background: var(--button-hover);
-}
-
-.nav-panel-item.active {
-  background: var(--button-base);
-  color: #fff;
-}
-
+/* Empty-state text (e.g. macro picker); panels nav no longer uses a dropdown */
 .nav-panel-empty {
   margin: 0;
   padding: 8px 16px;
@@ -163,6 +115,26 @@ section.content #accessories[style*="display: block"] {
   display: grid !important;
   grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)) !important;
   width: 100% !important;
+}
+
+.auth-required-card {
+  max-width: 560px;
+  margin: 60px auto;
+  padding: 24px;
+  border: 1px dashed var(--border);
+  border-radius: 12px;
+  text-align: center;
+}
+
+.auth-required-card h3 {
+  margin-top: 0;
+}
+
+.depot-login-required-hint {
+  margin-top: 8px;
+  color: var(--text-muted, #888);
+  font-size: 0.9rem;
+  text-align: center;
 }
 
 section .padded {
@@ -950,15 +922,6 @@ form input, form select, form textarea {
   display: flex;
   align-items: center;
   gap: 1rem;
-}
-
-.controlKeyModal-settingsLink {
-  color: var(--button-base, #0d6efd);
-  text-decoration: none;
-}
-
-.controlKeyModal-settingsLink:hover {
-  text-decoration: underline;
 }
 
 /* Child lock modals (trains screen) */

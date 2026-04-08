@@ -1,5 +1,18 @@
-<div class="panels-screen">
-    <!-- Hidden select for JavaScript to populate -->
+<div id="panelListScreen" class="panel-list-screen">
+    <div class="filters-container panel-list-filters">
+        <div class="search-container panel-list-search-wrap">
+            <input type="search" id="panelSearch" class="panel-list-search" placeholder="Search panels by name or description…" autocomplete="off" />
+        </div>
+    </div>
+    <div id="panelsListGrid" class="panels-list control-panels-list" aria-live="polite"></div>
+    <div id="noPanelsListMessage" class="panel-list-empty no-items" style="display: none;">
+        <h3>No panels found</h3>
+        <p id="noPanelsListText">No panels match your search, or none are available yet.</p>
+    </div>
+</div>
+
+<div id="panelViewerScreen" class="panels-screen" style="display: none;">
+    <!-- Hidden select for JavaScript compatibility -->
     <select id="panelSelect" style="display: none;" disabled>
         <option value="">Loading panels...</option>
     </select>
@@ -143,3 +156,25 @@
     </div>
 </template>
 
+<template id="controlPanelCardTemplate">
+    <div class="panel-card panel-card-row control-panel-card clickable-card" data-panel-id="" role="button" tabindex="0">
+        <div class="panel-row-content">
+            <div class="panel-row-details">
+                <div class="panel-row-header">
+                    <div>
+                        <h3 class="panel-name"></h3>
+                        <p class="panel-description"></p>
+                        <div class="panel-stats panel-stats-subtle">
+                            <span class="stat"><span class="element-count">0</span> elements</span>
+                            <span class="stat"><span class="panel-size">—</span></span>
+                            <span class="stat"><span class="created-date">—</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-row-preview">
+                <canvas class="panel-thumbnail panel-thumbnail-large" width="480" height="280" aria-hidden="true"></canvas>
+            </div>
+        </div>
+    </div>
+</template>

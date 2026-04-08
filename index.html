@@ -33,16 +33,7 @@
         <div class="nav-links">
             <button class="navButton" target="trains">Trains</button>
             <button class="navButton" target="accessories">Accessories</button>
-            <div class="nav-panel-menu" id="navPanelMenu">
-                <button class="navButton navPanelButton" id="panelsNavButton" target="panels" aria-haspopup="true" aria-expanded="false">
-                    Panels ▾
-                </button>
-                <div class="nav-panel-dropdown" id="navPanelDropdown">
-                    <div class="nav-panel-dropdown-list" id="navPanelDropdownList">
-                        <p class="nav-panel-empty">Loading panels…</p>
-                    </div>
-                </div>
-            </div>
+            <button class="navButton" target="panels">Panels</button>
             <button class="navButton" target="settings">Settings</button>
             <button id="menuIcon" class="menuIcon" onclick="toggleMenuModal()">
                 <div class="grid-icon">
@@ -125,7 +116,7 @@
                 <div id="controlKeyModalValidation" class="controlKeyModal-validation" style="display: none;"></div>
                 <div class="controlKeyModal-actions">
                     <button type="submit" class="btn btn-primary">Log in</button>
-                    <a href="#" id="controlKeyModalSettingsLink" class="controlKeyModal-settingsLink">Open Settings</a>
+                    <button type="button" id="controlKeyModalSkipButton" class="btn btn-primary">Skip for now</button>
                 </div>
             </form>
         </div>
@@ -172,17 +163,6 @@
         }
 
         function navigateTo(target) {
-            // On mobile, block panel control and keep the menu open with a slide-over style message
-            if (target === 'panels' && typeof isMobileOrTablet === 'function' && isMobileOrTablet()) {
-                const msg = 'Panel control is not available on mobile. Please use a tablet or desktop.';
-                if (typeof showNotification === 'function') {
-                    showNotification(msg, 'info');
-                } else {
-                    alert(msg);
-                }
-                return;
-            }
-
             toggleMenuModal();
             if (typeof showScreen === 'function') {
                 showScreen(target);
