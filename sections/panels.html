@@ -21,8 +21,17 @@
         <div class="panel-name-bubble" id="panelNameBubble">
             <span id="panelNameText"></span>
         </div>
-        <button id="addMacroButton" class="panel-macro-button" title="Add macro">+ Macro</button>
-        <button id="addTrainButton" class="panel-macro-button" title="Add train">+ Train</button>
+    </div>
+    <div class="panel-viewer-actions" id="panelViewerActions" style="display: none;">
+        <button type="button" id="addMacroButton" class="panel-macro-button" title="Add macro">+ Macro</button>
+        <button type="button" id="addTrainButton" class="panel-macro-button" title="Add train">+ Train</button>
+    </div>
+
+    <div id="panelZoomToolbar" class="panel-zoom-toolbar" style="display: none;" role="toolbar" aria-label="Panel zoom">
+        <button type="button" id="panelZoomOutBtn" class="panel-zoom-btn" title="Zoom out" aria-label="Zoom out">−</button>
+        <span id="panelZoomLevelLabel" class="panel-zoom-level" aria-live="polite">100%</span>
+        <button type="button" id="panelZoomInBtn" class="panel-zoom-btn" title="Zoom in" aria-label="Zoom in">+</button>
+        <button type="button" id="panelZoomFitBtn" class="panel-zoom-btn panel-zoom-fit" title="Fit panel to view" aria-label="Fit to view">Fit</button>
     </div>
 
     <div class="panel-stage-wrapper">
@@ -32,8 +41,10 @@
                     <p>Select a panel to begin</p>
                 </div>
             </div>
+            <div id="panelControllerLayer" class="panel-controller-layer">
+                <div id="panelControllerScaler" class="panel-controller-scaler" aria-hidden="true"></div>
+            </div>
         </div>
-        <div id="panelControllerLayer" class="panel-controller-layer"></div>
     </div>
 </div>
 
@@ -165,8 +176,6 @@
                         <h3 class="panel-name"></h3>
                         <p class="panel-description"></p>
                         <div class="panel-stats panel-stats-subtle">
-                            <span class="stat"><span class="element-count">0</span> elements</span>
-                            <span class="stat"><span class="panel-size">—</span></span>
                             <span class="stat"><span class="created-date">—</span></span>
                         </div>
                     </div>

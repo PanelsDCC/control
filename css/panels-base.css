@@ -2,37 +2,57 @@
 
 #panels {
   width: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
 }
 
 .panels-screen {
   position: relative;
   display: flex;
   flex-direction: column;
-  min-height: calc(100vh - var(--top-nav-height, 72px));
+  flex: 1 1 auto;
+  min-height: 0;
   width: 100%;
   height: 100%;
 }
 
+/* Panel title only — narrow box; stays behind floating controllers */
 .panel-name-container {
   position: absolute;
   top: 12px;
+  left: 12px;
+  right: auto;
+  max-width: min(55vw, 24rem);
+  /* Below floating controllers (see .panel-stage-wrapper) */
+  z-index: 1;
+  display: block;
+}
+
+/* + Macro / + Train — separate from title so they stack above overlays */
+.panel-viewer-actions {
+  position: absolute;
+  top: 12px;
   right: 12px;
-  z-index: 10;
+  left: auto;
+  z-index: 12;
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-end;
   gap: 6px;
 }
 
 .panel-name-bubble {
-  background: var(--card-bg, #19222d);
-  border: 1px solid var(--border-color, #2e3c4b);
-  border-radius: 8px;
-  padding: 6px 12px;
-  font-size: 0.9rem;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  font-size: 0.95rem;
   font-weight: 600;
-  color: var(--text-color, #f6f6f6);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  color: var(--text-muted, #9aa2b1);
+  box-shadow: none;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.75);
 }
 
 .panel-name-bubble span {
@@ -56,26 +76,72 @@
   opacity: 0.8;
 }
 
+.panel-zoom-toolbar {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  z-index: 11;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  background: var(--card-bg, #19222d);
+  border: 1px solid var(--border-color, #2e3c4b);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+}
+
+.panel-zoom-btn {
+  min-width: 36px;
+  height: 36px;
+  padding: 0 8px;
+  border-radius: 6px;
+  border: 1px solid var(--border-color, #2e3c4b);
+  background: var(--input-background, #1b232c);
+  color: var(--text-color, #f6f6f6);
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.panel-zoom-btn:hover {
+  background: var(--button-base, #3d84ff);
+  color: #fff;
+  border-color: var(--button-base, #3d84ff);
+}
+
+.panel-zoom-btn.panel-zoom-fit {
+  font-size: 0.8rem;
+  font-weight: 600;
+  min-width: 44px;
+}
+
+.panel-zoom-level {
+  min-width: 3.25rem;
+  text-align: center;
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-muted, #9aa2b1);
+  user-select: none;
+}
+
 .panel-stage-wrapper {
   position: relative;
+  z-index: 2;
   flex: 1;
-  min-height: 300px;
+  min-height: 0;
   overflow: hidden;
 }
 
 .panel-canvas-viewport {
   position: absolute;
   inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   overflow: hidden;
 }
 
 .panel-canvas {
   position: relative;
-  max-width: 100%;
-  max-height: 100%;
   transform-origin: top left;
 }
 
@@ -104,7 +170,16 @@
 .panel-controller-layer {
   position: absolute;
   inset: 0;
+  z-index: 2;
   pointer-events: none;
+}
+
+/* Matches #trackCanvas geometry + CSS transform so overlay cards scale with the panel */
+.panel-controller-scaler {
+  position: absolute;
+  transform-origin: top left;
+  pointer-events: none;
+  overflow: visible;
 }
 
 @keyframes panelFadeIn {
@@ -254,21 +329,15 @@
   justify-content: center;
   max-height: 440px;
   overflow: hidden;
-  background: var(--background);
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  padding: 6px;
   box-sizing: border-box;
 }
 
 .control-panel-card .panel-thumbnail-large {
   display: block;
   max-width: 100%;
-  max-height: 424px;
+  max-height: 440px;
   width: auto;
   height: auto;
-  border-radius: 6px;
-  background: var(--background-alt);
 }
 
 .panel-list-empty.no-items {
@@ -287,6 +356,26 @@
   font-size: 1.15rem;
 }
 
+/* Match base selectors so flex-direction wins over .control-panel-card.panel-card-row .panel-row-content */
+@media (max-width: 1024px) {
+  .control-panel-card .panel-card-row .panel-row-content,
+  .control-panel-card.panel-card-row .panel-row-content {
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  .control-panel-card .panel-row-preview {
+    flex: 0 1 auto;
+    align-self: stretch;
+    max-height: 280px;
+    width: 100%;
+  }
+
+  .control-panel-card .panel-thumbnail-large {
+    max-height: 280px;
+  }
+}
+
 @media (max-width: 768px) {
   .control-panels-list.panels-list {
     grid-template-columns: 1fr;
@@ -295,20 +384,6 @@
 
   .panel-list-screen .panel-list-filters.filters-container {
     padding: 0 0.75rem;
-  }
-
-  .control-panel-card .panel-row-content {
-    flex-direction: column;
-    min-height: 0;
-  }
-
-  .control-panel-card .panel-row-preview {
-    max-height: 280px;
-    order: -1;
-  }
-
-  .control-panel-card .panel-thumbnail-large {
-    max-height: 268px;
   }
 }
 

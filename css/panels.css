@@ -14,23 +14,37 @@
 .panel-name-container {
   position: absolute;
   top: 12px;
+  left: 12px;
+  right: auto;
+  max-width: min(55vw, 24rem);
+  z-index: 1;
+  display: block;
+}
+
+.panel-viewer-actions {
+  position: absolute;
+  top: 12px;
   right: 12px;
-  z-index: 10;
+  left: auto;
+  z-index: 12;
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-end;
   gap: 6px;
 }
 
 .panel-name-bubble {
-  background: var(--card-bg, #19222d);
-  border: 1px solid var(--border-color, #2e3c4b);
-  border-radius: 8px;
-  padding: 6px 12px;
-  font-size: 0.9rem;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  font-size: 0.95rem;
   font-weight: 600;
-  color: var(--text-color, #f6f6f6);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  color: var(--text-muted, #9aa2b1);
+  box-shadow: none;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.75);
 }
 
 .panel-name-bubble span {
@@ -56,6 +70,7 @@
 
 .panel-stage-wrapper {
   position: relative;
+  z-index: 2;
   flex: 1;
   min-height: 300px;
   overflow: hidden;
@@ -64,16 +79,11 @@
 .panel-canvas-viewport {
   position: absolute;
   inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   overflow: hidden;
 }
 
 .panel-canvas {
   position: relative;
-  max-width: 100%;
-  max-height: 100%;
   transform-origin: top left;
 }
 
@@ -105,12 +115,23 @@
   pointer-events: none;
 }
 
+.panel-controller-scaler {
+  position: absolute;
+  transform-origin: top left;
+  pointer-events: none;
+  overflow: visible;
+}
+
 .panel-connector-lines {
   position: absolute;
   left: 0;
   top: 0;
   pointer-events: none;
   z-index: 0;
+}
+
+.panel-connector-lines path {
+  pointer-events: none;
 }
 
 .panel-controller-card {

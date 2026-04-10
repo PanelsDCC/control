@@ -921,7 +921,16 @@ form input, form select, form textarea {
 .controlKeyModal-actions {
   display: flex;
   align-items: center;
-  gap: 1rem;
+}
+
+#controlKeyModalSkipButton {
+  margin-top: 0.5rem;
+}
+@media (max-width: 768px) {
+  .controlKeyModal-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
 }
 
 /* Child lock modals (trains screen) */

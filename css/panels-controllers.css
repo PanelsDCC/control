@@ -43,6 +43,13 @@
   cursor: move;
   gap: 8px;
   position: relative;
+  /* iPad / touch: avoid browser scroll/gesture stealing the pointer during drag */
+  touch-action: none;
+}
+
+.panel-controller-card.pinned .panel-controller-header,
+.panel-macro-card.pinned .panel-controller-header {
+  touch-action: auto;
 }
 
 .panel-controller-visual {
@@ -256,6 +263,7 @@
   bottom: 3px;
   cursor: se-resize;
   pointer-events: auto;
+  touch-action: none;
 }
 
 .panel-controller-card.pinned .panel-card-resize-handle,
