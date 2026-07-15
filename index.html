@@ -20,8 +20,10 @@
     <script src="lib/konva.min.js"></script>
     <script src="js/panelBuilder-core.js"></script>
     <script src="js/panelBuilder-elements.js"></script>
+    <script src="js/panelBuilder-snap.js"></script>
     <script src="js/panelBuilder-dcc.js"></script>
     <script src="js/panelBuilder-save.js"></script>
+    <script src="js/panel-topology.js"></script>
 </head>
 <body>
     <!-- Error banner removed: footer used for notifications -->
@@ -126,7 +128,7 @@
     <div id="depotModal" class="depotModal" style="display: none;">
         <div class="depotModal-content">
             <div class="depotModal-header">
-                <h2>Select Train from Depot</h2>
+                <h2 id="depotModalHeading">Select Train from Depot</h2>
                 <button class="depotModal-close" onclick="closeDepotModal()">&times;</button>
             </div>
             <div class="depotModal-search">
@@ -148,10 +150,12 @@
     <script src="js/settings.js"></script>
     <script src="js/trains.js"></script>
     <script src="js/accessories.js"></script>
+    <script src="js/auto-signals.js"></script>
     <script src="js/panels-core.js"></script>
     <script src="js/panels-controllers.js"></script>
     <script src="js/panels-trains.js"></script>
     <script src="js/panels.js"></script>
+    <script src="js/panel-cab-profile.js"></script>
     <script src="js/main.js"></script>
     
     <!-- Mobile Navigation Script -->

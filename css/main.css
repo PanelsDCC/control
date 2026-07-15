@@ -456,6 +456,7 @@ button:hover {
 }
 
 .train-image {
+  position: relative;
   min-height: 200px;
   display: flex;
   align-items: center;
@@ -464,6 +465,40 @@ button:hover {
   z-index: 1;
   width: 100%;
   cursor: pointer;
+}
+
+.train-image > img {
+  width: 100%;
+  max-height: 180px;
+  object-fit: contain;
+  vertical-align: middle;
+  position: relative;
+  z-index: 0;
+}
+
+.train-image .train-cab-view {
+  display: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 1;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px 10px 12px;
+  background: linear-gradient(180deg, rgba(20, 22, 28, 0.2) 0%, rgba(20, 22, 28, 0.88) 100%);
+}
+
+.train-details--cab-open .train-image > img {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.train-details--cab-open .train-image .train-cab-view {
+  display: flex;
 }
 
 .bubble {
@@ -498,9 +533,94 @@ button:hover {
   right: 10px;
 }
 
-.train-image img {
-  max-height: 180px;
-  vertical-align: middle;
+.bubble.cab-speed-toggle {
+  cursor: pointer;
+  user-select: none;
+}
+
+.train-cab-view .cab-berth {
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 10px;
+  color: #f9fafb;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.train-cab-view .cab-strip {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 2px;
+  min-height: 56px;
+}
+
+.train-cab-view .cab-strip-node {
+  flex: 0 0 auto;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  box-sizing: border-box;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+
+/* Leftmost / next-ahead bubble (active) */
+.train-cab-view .cab-strip > .cab-strip-node:first-child {
+  width: 54px;
+  height: 54px;
+  min-width: 54px;
+  min-height: 54px;
+  font-size: 0.95rem;
+  font-weight: 800;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.5);
+}
+
+.train-cab-view .cab-strip-node--limit {
+  font-weight: 700;
+  font-size: 0.72rem;
+}
+
+.train-cab-view .cab-strip-node--point-run {
+  border-style: dashed;
+}
+
+.train-cab-view .cab-strip-node--sensor-entry {
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+}
+
+.train-cab-view .cab-strip > .cab-strip-node:first-child.cab-strip-node--limit {
+  font-size: 0.95rem;
+}
+
+.train-cab-view .cab-run-btn {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  z-index: 2;
+  padding: 6px 14px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(34, 36, 42, 0.95);
+  color: #f9fafb;
+  cursor: pointer;
+}
+
+.train-cab-view .cab-run-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.train-cab-view .cab-run-btn:not(:disabled):hover {
+  background: rgba(50, 54, 64, 0.98);
 }
 
 .train-control {

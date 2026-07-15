@@ -69,6 +69,17 @@
     </div>
 
     <div class="form-card">
+        <h2>Automatic control</h2>
+        <label style="display:flex;align-items:flex-start;gap:0.5rem;">
+            <input type="checkbox" id="autoPlainLineSignalAspects" style="margin-top:0.2rem;" />
+            <span>Auto plain-line signal aspects</span>
+        </label>
+        <p class="connection-sync-hint" id="autoPlainLineSignalAspectsHint">
+            When enabled, embedded section signals facing plain track are driven from how many clear berths lie ahead (up to the next stop signal or occupied section). Uses manual train-in-section placement on the panel; sensors are not connected yet.
+        </p>
+    </div>
+
+    <div class="form-card">
         <h2>Diagnostics</h2>
         <p>Run quick tests to verify controller integration.</p>
         <div class="test-actions">
