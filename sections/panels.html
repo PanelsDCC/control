@@ -94,6 +94,11 @@
         <section class="train-details">
             <div class="train-image">
                 <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiBmaWxsPSIjZGRkIi8+Cjx0ZXh0IHg9IjUwIiB5PSI1NSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjNjY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5UcmFpbjwvdGV4dD4KPC9zdmc+"/>
+                <aside class="train-cab-view" data-cab-open="0" aria-hidden="true">
+                    <div class="cab-berth" aria-label="Current berth"></div>
+                    <div class="cab-strip" role="list" aria-label="Signals ahead"></div>
+                    <button type="button" class="cab-run-btn" disabled title="Start when stopped and route is clear; Next steps the cab sequence (throttle); berth moves when the step is the next section’s section bubble">Start</button>
+                </aside>
             </div>
             <span class="bubble train-name">
                 Train
@@ -101,7 +106,7 @@
             <span class="bubble DCCNumber">
                 DCC #<span class="train-number"></span>
             </span>
-            <span class="bubble bottomRight">Speed: <span class="throttle-value">0</span></span>
+            <span class="bubble bottomRight cab-speed-toggle" title="Cab view (tap to open or close)">Speed: <span class="throttle-value">0</span></span>
         </section>
         <section class="train-control">
             <panel class="throttle-panel">

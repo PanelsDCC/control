@@ -382,6 +382,13 @@
 
 .panel-train-container .train-details {
   cursor: move;
+  /* iPad / PWA: keep drags on the header region; match accessory card drag handle */
+  touch-action: none;
+}
+
+/* Allow vertical scroll inside all-functions while the container uses touch-action elsewhere */
+.panel-train-container .all-functions-panel {
+  touch-action: pan-y;
 }
 
 .panel-train-container .train-control {
