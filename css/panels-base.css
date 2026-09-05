@@ -28,19 +28,25 @@
   display: block;
 }
 
-/* + Macro / + Train — separate from title so they stack above overlays */
+/* + Macro / + Train — below stage wrapper so overlays receive touches;
+   empty areas of the stage pass events through (see .panel-stage-wrapper). */
 .panel-viewer-actions {
   position: absolute;
   top: 12px;
   right: 12px;
   left: auto;
-  z-index: 12;
+  z-index: 3;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: flex-end;
   gap: 6px;
+  pointer-events: none;
+}
+
+.panel-viewer-actions > * {
+  pointer-events: auto;
 }
 
 .panel-name-bubble {
@@ -80,7 +86,7 @@
   position: absolute;
   left: 12px;
   bottom: 12px;
-  z-index: 11;
+  z-index: 3;
   display: flex;
   align-items: center;
   gap: 6px;
@@ -89,6 +95,11 @@
   background: var(--card-bg, #19222d);
   border: 1px solid var(--border-color, #2e3c4b);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+  pointer-events: none;
+}
+
+.panel-zoom-toolbar > * {
+  pointer-events: auto;
 }
 
 .panel-zoom-btn {
@@ -128,21 +139,26 @@
 
 .panel-stage-wrapper {
   position: relative;
-  z-index: 2;
+  /* Above chrome (+Train / zoom) so train & accessory overlays receive iPad touches;
+     pointer-events:none lets taps on empty space reach the chrome underneath. */
+  z-index: 4;
   flex: 1;
   min-height: 0;
   overflow: hidden;
+  pointer-events: none;
 }
 
 .panel-canvas-viewport {
   position: absolute;
   inset: 0;
   overflow: hidden;
+  pointer-events: none;
 }
 
 .panel-canvas {
   position: relative;
   transform-origin: top left;
+  pointer-events: auto;
 }
 
 .panel-placeholder {

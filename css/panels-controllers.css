@@ -38,11 +38,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 12px;
+  padding: 8px 2px;
+  padding-right: 60px;
   border-bottom: 1px solid var(--border-color, #2e3c4b);
   cursor: move;
   gap: 8px;
   position: relative;
+  min-height: 44px;
   /* iPad / touch: avoid browser scroll/gesture stealing the pointer during drag */
   touch-action: none;
 }
@@ -71,6 +73,7 @@
 }
 
 .panel-controller-title {
+  margin-left: 4px;
   font-weight: 600;
   font-size: 0.95rem;
   flex: 1;
@@ -91,7 +94,7 @@
 .panel-controller-actions {
   position: absolute;
   top: 4px;
-  right: 4px;
+  right: -4px;
   display: flex;
   gap: 2px;
   z-index: 10;
@@ -103,32 +106,51 @@
   background: transparent;
   color: var(--text-muted, #a8b2c1);
   cursor: pointer;
-  padding: 2px 4px;
-  font-size: 0.75rem;
-  border-radius: 2px;
+  padding: 2px;
+  font-size: 1.25rem;
+  border-radius: 6px;
   transition: all 0.2s;
-  width: 18px;
-  height: 18px;
+  width: 32px;
+  height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
   line-height: 1;
 }
 
-.panel-controller-actions button:hover,
-.panel-controller-close:hover {
+@media (hover: hover) and (pointer: fine) {
+  .panel-controller-actions button:hover,
+  .panel-controller-close:hover {
+    background: rgba(61, 132, 255, 0.15);
+    color: var(--text-color, #f6f6f6);
+  }
+}
+
+.panel-controller-actions button:active {
   background: rgba(61, 132, 255, 0.15);
   color: var(--text-color, #f6f6f6);
 }
 
 .panel-controller-pin {
-  min-width: 18px;
-  font-size: 0.7rem;
+  min-width: 32px;
+  font-size: 1rem;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.panel-controller-close {
+  font-size: 1.6rem !important;
+  font-weight: 400;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .panel-controller-pin.pinned {
   color: var(--button-base, #3d84ff);
   background: rgba(61, 132, 255, 0.1);
+}
+
+.panel-controller-pin:not(.pinned) {
+  color: var(--text-muted, #a8b2c1);
+  background: transparent;
 }
 
 .panel-controller-timer-bar {
@@ -153,14 +175,107 @@
   overflow-x: hidden;
 }
 
+/* Split layout: preview left, controls right (matches accessories screen) */
+.panel-controller-body--split {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 0;
+  padding: 12px;
+  min-height: 120px;
+  overflow: hidden;
+}
+
+.panel-controller-stage {
+  width: 94px;
+  min-width: 94px;
+  height: 120px;
+  flex-shrink: 0;
+  border-radius: 4px;
+  background: var(--background-alt, #1b232c);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.panel-controller-stage .custom-accessory-stage {
+  width: 100%;
+  height: 100%;
+}
+
+.panel-controller-stage .accessoryIcon {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.panel-controller-controls {
+  flex: 0 1 auto;
+  min-width: 0;
+  min-height: 0;
+  max-height: 120px;
+  padding-left: 1rem;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.panel-controller-body--split .panel-controller-controls .accessory-control {
+  flex: 0 0 auto;
+}
+
+.panel-controller-body .accessory-control.accessory-control-uniform-width {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.panel-controller-body .accessory-control-uniform-width button {
+  width: var(--controller-btn-width, auto) !important;
+  min-width: max(85px, var(--controller-btn-width, 85px));
+  max-width: var(--controller-btn-width, none);
+}
+
+.panel-controller-body .accessory-control.accessory-control-uniform-width button {
+  text-align: center;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
+.panel-controller-body .accessory-control.accessory-control-uniform-width.point-control-two {
+  width: auto;
+}
+
+.panel-controller-body .point-control-states-uniform {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  grid-template-columns: unset;
+}
+
+.panel-controller-body .accessory-control-uniform-width .point-control-switch-row {
+  width: auto;
+}
+
+.panel-controller-body .accessory-control-uniform-width .point-control-switch {
+  width: var(--controller-btn-width, auto) !important;
+  min-width: max(85px, var(--controller-btn-width, 85px));
+}
+
 .panel-controller-body .accessory-control {
   display: grid;
-  gap: 8px;
+  gap: 4px;
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
 }
 
 .panel-controller-body .accessory-control button {
   width: 100%;
+  min-width: 85px;
   padding: 8px 10px;
   border-radius: 6px;
   border: 1px solid var(--border-color, #2e3c4b);
@@ -185,7 +300,7 @@
 .panel-controller-body .accessory-control.point-control-two {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 5px;
 }
 
 .panel-controller-body .point-control-switch-row {
@@ -215,13 +330,51 @@
 .panel-controller-body .point-control-states {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 8px;
+  gap: 4px;
 }
 
 .panel-controller-body .point-control-states button {
   padding: 8px 10px;
   font-size: 0.85rem;
   min-height: 44px;
+}
+
+/* Point pop-ups on panels: two state buttons only, full width, centred */
+.panel-controller-card[data-panel-interact-kind="point"] .panel-controller-controls {
+  padding-left: 0;
+  max-height: none;
+  width: 100%;
+  overflow: visible;
+}
+
+.panel-controller-card[data-panel-interact-kind="point"] .panel-controller-body {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.panel-controller-body .accessory-control.point-control-panel-popup {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.panel-controller-body .point-control-panel-popup .point-control-states {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  width: 100%;
+}
+
+.panel-controller-body .point-control-panel-popup .point-control-states button {
+  width: 100%;
+  min-width: 0;
+  text-align: center;
+  padding: 10px 12px;
+  font-size: 0.9rem;
+  min-height: 48px;
 }
 
 .panel-macro-body {
@@ -370,7 +523,33 @@
   cursor: move;
   overflow: visible;
   z-index: 100;
+  /* iPad: prevent browser scroll/gesture from stealing the drag */
+  touch-action: none;
+  display: flex;
+  flex-direction: column;
 }
+
+.panel-train-drag-handle {
+  flex: 0 0 auto;
+  padding: 10px 40px 10px 12px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #f6f6f6;
+  background: #19222d;
+  border-bottom: 1px solid var(--border-color, #2e3c4b);
+  border-radius: 10px 10px 0 0;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+  min-height: 40px;
+  box-sizing: border-box;
+}
+
+.panel-train-container.is-dragging .panel-train-drag-handle {
+  cursor: grabbing;
+}
+
 .panel-train-container .keypad {
   width: 90%;
 }
@@ -378,6 +557,15 @@
 .panel-train-container .button-container {
   display: flex;
   padding: 12px;
+  flex: 1 1 auto;
+  touch-action: manipulation;
+}
+
+.panel-train-container .train {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .panel-train-container .train-details {
@@ -393,12 +581,13 @@
 
 .panel-train-container .train-control {
   cursor: default;
+  touch-action: manipulation;
 }
 
 .panel-train-close {
   position: absolute;
-  top: 8px;
-  right: 8px;
+  top: 6px;
+  right: 6px;
   border: 1px solid var(--border-color, #2e3c4b);
   background: var(--input-background, #1b232c);
   color: var(--text-color, #f6f6f6);
@@ -409,6 +598,7 @@
   z-index: 10;
   transition: all 0.2s;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  touch-action: manipulation;
 }
 
 .panel-train-close:hover {

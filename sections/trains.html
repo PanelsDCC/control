@@ -87,6 +87,14 @@
             </span>
             <span class="bubble bottomRight cab-speed-toggle" title="Cab view (tap to open or close)">Speed: <span class="throttle-value">0</span></span>
         </section>
+        <button type="button" class="cab-diagram-toggle" title="Route diagram" aria-label="Diagram" aria-expanded="false" aria-pressed="false">
+            <span class="cab-diagram-toggle__label">Diagram</span>
+            <span class="cab-diagram-toggle__chevron" aria-hidden="true">
+                <svg viewBox="0 0 64 8" width="64" height="8" focusable="false">
+                    <path d="M4 2 L32 7 L60 2" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+        </button>
         <section class="train-control">
             <panel class="throttle-panel">
                 <div class="train-throttle-container">
@@ -123,6 +131,21 @@
             <div class="all-functions-panel function-panel" style="display: none;">
                 <!-- All functions will be displayed here -->
             </div>
+            <aside class="train-dest-view" data-dest-open="0" aria-hidden="true" aria-label="Route diagram">
+                <div class="cab-destinations" aria-label="Destinations">
+                    <div class="cab-dest-toolbar">
+                        <button type="button" class="cab-dest-add-wait" title="Add a wait step">Add wait</button>
+                        <button type="button" class="cab-dest-add-loop" title="Add a nested loop">Add loop</button>
+                    </div>
+                    <ol class="cab-dest-list"></ol>
+                    <p class="cab-dest-pick-hint" hidden>Click a section on any panel…</p>
+                        <p class="cab-dest-select-hint">Drag ≡ on a destination/wait into a loop · tap for route</p>
+                </div>
+                <div class="cab-dest-actions">
+                    <button type="button" class="cab-dest-add" title="Click a section on any panel to add">Add destination</button>
+                    <button type="button" class="cab-dest-clear" title="Clear destination plan">Clear</button>
+                </div>
+            </aside>
         </section>
     </div>
 </template>

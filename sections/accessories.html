@@ -2,7 +2,7 @@
 <div class="filters-container">
     <div class="search-and-filters-row">
         <div class="search-container">
-            <input type="text" id="accessorySearch" placeholder="Search accessories and macros by name, description, or location..." />
+            <input type="text" id="accessorySearch" placeholder="Search accessories and macros by name, type, panel, or DCC number..." />
         </div>
         <div class="category-filter filter-inline-desktop">
             <select id="accessoryTypeFilter" aria-label="Filter by type">
@@ -10,8 +10,8 @@
             </select>
         </div>
         <div class="category-filter filter-inline-desktop">
-            <select id="macroLocationFilter" aria-label="Filter by location">
-                <option value="">All locations</option>
+            <select id="accessoryPanelFilter" aria-label="Filter by panel">
+                <option value="">All Panels</option>
             </select>
         </div>
         <button type="button" class="filters-trigger btn btn-primary mobile-only" id="filtersTrigger" aria-label="Filters" title="Filters">
@@ -35,9 +35,9 @@
                 </select>
             </div>
             <div class="category-filter">
-                <label for="macroLocationFilterModal">Location</label>
-                <select id="macroLocationFilterModal">
-                    <option value="">All locations</option>
+                <label for="accessoryPanelFilterModal">Panel</label>
+                <select id="accessoryPanelFilterModal">
+                    <option value="">All Panels</option>
                 </select>
             </div>
         </div>
